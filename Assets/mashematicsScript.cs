@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using System.Linq;
+using Newtonsoft.Json;
 
 public class mashematicsScript : MonoBehaviour {
 
@@ -57,9 +60,9 @@ public class mashematicsScript : MonoBehaviour {
                     answer += 50;
                 }
             }
-            else if (answer > 100)
+            else if (answer >= 100)
             {
-                while (answer > 100)
+                while (answer >= 100)
                 {
                     answer -= 50;
                 }
@@ -204,9 +207,24 @@ public class mashematicsScript : MonoBehaviour {
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    Match m;
+    KMSelectable[] ProcessTwitchCommand(string command)
+    {
+        command = command.ToLowerInvariant().Trim();
+
+        if ((m = Regex.Match(command, @"^submit +(\d+)$")).Success)
+        {
+            return Enumerable.Repeat(PushBtn, int.Parse(m.Groups[1].Value)).Concat(new[] { SubmitBtn }).ToArray();
+        }
+
+        return null;
+    }
+
+    public string TwitchHelpMessage = "Submit the correct answer using !{0} submit ##.";
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
