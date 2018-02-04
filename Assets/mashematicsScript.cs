@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using System.Linq;
-using Newtonsoft.Json;
 
 public class mashematicsScript : MonoBehaviour {
 
@@ -29,10 +26,12 @@ public class mashematicsScript : MonoBehaviour {
 
     private class Number
     {
+        private int moduleId;
         private System.Random numberGenerator = new System.Random(Guid.NewGuid().GetHashCode());
 
-        public Number()
+        public Number(int moduleId)
         {
+            this.moduleId = moduleId;
             this.Number1 = numberGenerator.Next(0, 100);
             this.Number2 = numberGenerator.Next(0, 100);
             this.Number3 = numberGenerator.Next(0, 100);
@@ -106,7 +105,9 @@ public class mashematicsScript : MonoBehaviour {
 
         public override string ToString()
         {
-            return string.Format("Math problem: {0} {1} {2} {3} {4} = {5} (requires push {6})", this.Number1, this.OperatorType1, this.Number2, this.OperatorType2, this.Number3, this.GetAnswer(), this.GetNumberOfRequiredPush());
+            return string.Format("[Mashematics #{7}] Math problem: {0} {1} {2} {3} {4} = {5} (requires push {6})", 
+                this.Number1, this.OperatorType1, this.Number2, this.OperatorType2, this.Number3,
+                this.GetAnswer(), this.GetNumberOfRequiredPush(), this.moduleId);
         }
 
         private int Operator1 { get; set; }
@@ -151,7 +152,7 @@ public class mashematicsScript : MonoBehaviour {
     {
         _moduleId = _moduleIdCounter++;
 
-        var number = new Number();
+        var number = new Number(this._moduleId);
         Debug.Log(number.ToString());
 
         PushBtn.OnInteract += delegate ()
@@ -177,19 +178,20 @@ public class mashematicsScript : MonoBehaviour {
         SubmitBtn.OnInteract += delegate ()
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.SubmitBtn.transform);
-            Debug.Log("Pressing submit");
+            Debug.LogFormat("[Mashematics #{1}] Submitting {0}", this.numberOfPush, _moduleId);
             if (!this.isSolved)
             
             {
                 if (this.numberOfPush == number.GetNumberOfRequiredPush())
                 {
-                    Debug.Log("solved");
+                    Debug.LogFormat("[Mashematics #{0}] Module disarmed.", _moduleId);
                     this.isSolved = true;
                     Module.HandlePass();
                     Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, this.SubmitBtn.transform);
                 }
                 else
                 {
+                    Debug.LogFormat("[Mashematics #{0}] Strike!", _moduleId);
                     Module.HandleStrike();
                     this.numberOfPush = 0;
                     this.indicatorTxt.text = this.numberOfPush.ToString();
