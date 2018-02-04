@@ -13,20 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: mashematics
   title: Mashematics
-  description: 'Get your click finger ready because you will need it.
-
-
-    Mod id: mashematics
-
-    Twitch plays is included!
-
-
-    The manual is included. there will be a link for in soon.
-
-
-    Note: This is my first mod and i''m not the best at programming in c# and english
-    is not my native language. So if you want to report any typos or bugs in the module,
-    contact me on discord: Marksam32#2748 '
-  version: 1.3
+  description: "Get your click finger ready because you will need it.\n\nMod id: mashematics\nTwitch
+    plays is included!\n\nThe manual is included. But you can find it here:\n\nHtml:
+    https://ktane.timwi.de/HTML/Mashematics.html\r\nPdf: https://ktane.timwi.de/PDF/Mashematics.pdf\r\n\nNote:
+    This is my first mod and i'm not the best at programming in c# and english is
+    not my native language. So if you want to report any typos or bugs in the module,
+    contact me on discord: Marksam32#2748 "
+  version: 1.5
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 6c1385b004266504780e5f1cf1bb4681, type: 3}

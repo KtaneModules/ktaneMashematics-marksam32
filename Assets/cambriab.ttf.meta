@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6079b7923a1908545aaf93745bef9e23
-timeCreated: 1517421317
+guid: cff1167ab6f172d4f87bb8d25f422318
+timeCreated: 1517761170
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Inconsolata
+  fontName: Cambria
   fontNames:
-  - Inconsolata
+  - Cambria
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
