@@ -180,7 +180,8 @@ public class mashematicsScript : MonoBehaviour {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.SubmitBtn.transform);
             Debug.LogFormat("[Mashematics #{1}] Submitting {0}", this.numberOfPush, _moduleId);
             if (!this.isSolved)
-            
+            SubmitBtn.AddInteractionPunch();
+
             {
                 if (this.numberOfPush == number.GetNumberOfRequiredPush())
                 {

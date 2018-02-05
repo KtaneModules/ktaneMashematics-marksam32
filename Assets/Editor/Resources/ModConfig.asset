@@ -19,6 +19,6 @@ MonoBehaviour:
     This is my first mod and i'm not the best at programming in c# and english is
     not my native language. So if you want to report any typos or bugs in the module,
     contact me on discord: Marksam32#2748 "
-  version: 1.5
+  version: 1.6
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 6c1385b004266504780e5f1cf1bb4681, type: 3}
