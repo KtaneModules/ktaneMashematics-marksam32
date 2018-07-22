@@ -1,18 +1,22 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using System.Linq;
 
 public class mashematicsScript : MonoBehaviour {
 
     public KMAudio Audio;
+
     public KMSelectable SubmitBtn;
     public KMSelectable PushBtn;
+
     public TextMesh mathProblem1;
     public TextMesh mathProblem2;
     public TextMesh mathProblem3;
     public TextMesh indicatorTxt;
+
     public KMBombModule Module;
+
     public TextMesh mathProblemOp1;
     public TextMesh mathProblemOp2;
 
@@ -142,16 +146,13 @@ public class mashematicsScript : MonoBehaviour {
 
         private static string OperatorType(int op)
         {
-            return IsPlus(op) ? "+" : (IsMinus(op) ? "-" : "*");
+            return IsPlus(op) ? "+" : (IsMinus(op) ? "-" : "×");
         }
 
     }
 
-    // Use this for initialization
-    void Start ()
+    void Activate()
     {
-        _moduleId = _moduleIdCounter++;
-
         var number = new Number(this._moduleId);
         Debug.Log(number.ToString());
 
@@ -159,17 +160,17 @@ public class mashematicsScript : MonoBehaviour {
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.PushBtn.transform);
             if (!this.isSolved)
-            PushBtn.AddInteractionPunch();
+                PushBtn.AddInteractionPunch();
             {
                 this.numberOfPush++;
-                this.indicatorTxt.text = this.numberOfPush.ToString();
+                this.indicatorTxt.text = this.numberOfPush.ToString("D2");
                 if (this.numberOfPush == 100)
                 {
                     Module.HandleStrike();
                     this.numberOfPush = 0;
-                    this.indicatorTxt.text = this.numberOfPush.ToString();
+                    this.indicatorTxt.text = this.numberOfPush.ToString("D2");
 
-                }             
+                }
             }
 
             return false;
@@ -180,7 +181,7 @@ public class mashematicsScript : MonoBehaviour {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.SubmitBtn.transform);
             Debug.LogFormat("[Mashematics #{1}] Submitting {0}", this.numberOfPush, _moduleId);
             if (!this.isSolved)
-            SubmitBtn.AddInteractionPunch();
+                SubmitBtn.AddInteractionPunch();
 
             {
                 if (this.numberOfPush == number.GetNumberOfRequiredPush())
@@ -195,7 +196,7 @@ public class mashematicsScript : MonoBehaviour {
                     Debug.LogFormat("[Mashematics #{0}] Strike!", _moduleId);
                     Module.HandleStrike();
                     this.numberOfPush = 0;
-                    this.indicatorTxt.text = this.numberOfPush.ToString();
+                    this.indicatorTxt.text = this.numberOfPush.ToString("D2");
                 }
             }
 
@@ -207,8 +208,14 @@ public class mashematicsScript : MonoBehaviour {
         this.mathProblem1.text = number.Number1.ToString();
         this.mathProblem2.text = number.Number2.ToString();
         this.mathProblem3.text = number.Number3.ToString();
+        this.indicatorTxt.text = this.numberOfPush.ToString("D2");
+    }
 
-
+    // Use this for initialization
+    void Start ()
+    {
+        _moduleId = _moduleIdCounter++;
+        Module.OnActivate += Activate;
     }
 
     Match m;

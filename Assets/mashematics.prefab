@@ -11,6 +11,24 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1662362908305374}
   m_IsPrefabParent: 1
+--- !u!1 &1071530303567936
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4119544851758990}
+  - component: {fileID: 23731411199024736}
+  - component: {fileID: 102025015808112308}
+  - component: {fileID: 114693520432504248}
+  m_Layer: 0
+  m_Name: indicatorTxt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1221310381752040
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +132,7 @@ GameObject:
   - component: {fileID: 102654154871378392}
   - component: {fileID: 114025194279533776}
   m_Layer: 0
-  m_Name: indicatorTxt
+  m_Name: indicatorTxtShapow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,12 +376,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1450947839411050}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.04, y: 0.51, z: 0.3}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.02}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.04, y: 0.509, z: 0.3}
+  m_LocalScale: {x: 0.049999997, y: 0.050000023, z: 0.02000001}
   m_Children: []
   m_Father: {fileID: 4298909404133914}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4086093807916272
 Transform:
@@ -383,6 +401,19 @@ Transform:
   m_Father: {fileID: 4956655430009940}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4119544851758990
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071530303567936}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.04, y: 0.51, z: 0.3}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.02}
+  m_Children: []
+  m_Father: {fileID: 4298909404133914}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4169657610812742
 Transform:
   m_ObjectHideFlags: 1
@@ -421,6 +452,7 @@ Transform:
   m_LocalPosition: {x: -0.049, y: 0.0103, z: -0.0191}
   m_LocalScale: {x: 0.05, y: 0.02, z: 0.038}
   m_Children:
+  - {fileID: 4119544851758990}
   - {fileID: 4070734553204404}
   m_Father: {fileID: 4956655430009940}
   m_RootOrder: 4
@@ -878,6 +910,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23731411199024736
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071530303567936}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 15c95a7eef23cc347bec7faac5e5a6cb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23805940614539788
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1103,6 +1167,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!102 &102025015808112308
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071530303567936}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 0.5
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 228
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 3d2e2ed63c7a0ed4cb4a7a6d1661e19e, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
 --- !u!102 &102136607202414372
 TextMesh:
   serializedVersion: 3
@@ -1110,7 +1195,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1809125275294026}
-  m_Text: 9
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1131,7 +1216,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625775807718192}
-  m_Text: +
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1152,7 +1237,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734105257990240}
-  m_Text: '-'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1194,7 +1279,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639529572231708}
-  m_Text: 67
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1215,7 +1300,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1450947839411050}
-  m_Text: 0
+  m_Text: 00
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1228,7 +1313,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 3d2e2ed63c7a0ed4cb4a7a6d1661e19e, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278190157
 --- !u!102 &102700342003274322
 TextMesh:
   serializedVersion: 3
@@ -1236,7 +1321,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1783396576736888}
-  m_Text: 89
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
@@ -1351,7 +1436,7 @@ MonoBehaviour:
   mathProblem1: {fileID: 102700342003274322}
   mathProblem2: {fileID: 102605553961178016}
   mathProblem3: {fileID: 102136607202414372}
-  indicatorTxt: {fileID: 102654154871378392}
+  indicatorTxt: {fileID: 102025015808112308}
   Module: {fileID: 114640275647680678}
   mathProblemOp1: {fileID: 102296648879896114}
   mathProblemOp2: {fileID: 102387872333195722}
@@ -1570,6 +1655,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
+--- !u!114 &114693520432504248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071530303567936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text
 --- !u!114 &114814955311324780
 MonoBehaviour:
   m_ObjectHideFlags: 1
