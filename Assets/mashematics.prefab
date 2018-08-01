@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 102654154871378392}
   - component: {fileID: 114025194279533776}
   m_Layer: 0
-  m_Name: indicatorTxtShapow
+  m_Name: indicatorTxtShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,7 +1300,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1450947839411050}
-  m_Text: 00
+  m_Text: 88
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
