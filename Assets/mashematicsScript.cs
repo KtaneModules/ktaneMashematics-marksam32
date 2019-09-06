@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -31,16 +30,15 @@ public class mashematicsScript : MonoBehaviour {
     private class Number
     {
         private int moduleId;
-        private System.Random numberGenerator = new System.Random(Guid.NewGuid().GetHashCode());
 
         public Number(int moduleId)
         {
             this.moduleId = moduleId;
-            this.Number1 = numberGenerator.Next(0, 100);
-            this.Number2 = numberGenerator.Next(0, 100);
-            this.Number3 = numberGenerator.Next(0, 100);
-            this.Operator1 = numberGenerator.Next(0, 3);
-            this.Operator2 = numberGenerator.Next(0, 3);
+            this.Number1 = Random.Range(0, 100);
+            this.Number2 = Random.Range(0, 100);
+            this.Number3 = Random.Range(0, 100);
+            this.Operator1 = Random.Range(0, 3);
+            this.Operator2 = Random.Range(0, 3);
         }
 
         public int GetAnswer()
@@ -159,8 +157,9 @@ public class mashematicsScript : MonoBehaviour {
         PushBtn.OnInteract += delegate ()
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.PushBtn.transform);
-            if (!this.isSolved)
-                PushBtn.AddInteractionPunch();
+            PushBtn.AddInteractionPunch();
+            if (this.isSolved)
+                return false;
             {
                 this.numberOfPush++;
                 this.indicatorTxt.text = this.numberOfPush.ToString("D2");
@@ -179,14 +178,21 @@ public class mashematicsScript : MonoBehaviour {
         SubmitBtn.OnInteract += delegate ()
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.SubmitBtn.transform);
+            SubmitBtn.AddInteractionPunch();
             Debug.LogFormat("[Mashematics #{1}] Submitting {0}", this.numberOfPush, _moduleId);
-            if (!this.isSolved)
-                SubmitBtn.AddInteractionPunch();
+            if (this.isSolved)
+                return false;
 
             {
                 if (this.numberOfPush == number.GetNumberOfRequiredPush())
                 {
                     Debug.LogFormat("[Mashematics #{0}] Module disarmed.", _moduleId);
+                    mathProblem1.text = "";
+                    mathProblem2.text = "";
+                    mathProblem3.text = "";
+                    indicatorTxt.text = "";
+                    mathProblemOp1.text = "";
+                    mathProblemOp2.text = "";
                     this.isSolved = true;
                     Module.HandlePass();
                     Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, this.SubmitBtn.transform);
