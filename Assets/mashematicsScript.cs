@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class mashematicsScript : MonoBehaviour {
 
     private static int _moduleIdCounter = 1;
     private int _moduleId = 0;
+    private Number number;
 
     private int numberOfPush;
 
@@ -41,7 +43,7 @@ public class mashematicsScript : MonoBehaviour {
             this.Operator2 = Random.Range(0, 3);
         }
 
-        public int GetAnswer()
+        private int GetAnswer()
         {
             if (IsMultiply(this.Operator2))
             {
@@ -151,7 +153,7 @@ public class mashematicsScript : MonoBehaviour {
 
     void Activate()
     {
-        var number = new Number(this._moduleId);
+        number = new Number(this._moduleId);
         Debug.Log(number.ToString());
 
         PushBtn.OnInteract += delegate ()
@@ -225,7 +227,7 @@ public class mashematicsScript : MonoBehaviour {
     }
 
     Match m;
-    KMSelectable[] ProcessTwitchCommand(string command)
+    public KMSelectable[] ProcessTwitchCommand(string command)
     {
         command = command.ToLowerInvariant().Trim();
 
@@ -237,11 +239,16 @@ public class mashematicsScript : MonoBehaviour {
         return null;
     }
 
+    public IEnumerator TwitchHandleForcedSolve()
+    {
+        var answer = number.GetNumberOfRequiredPush();
+        for (var i = 0; i < answer; i++)
+        {
+            PushBtn.OnInteract();
+            yield return new WaitForSeconds(.05f);
+        }
+        SubmitBtn.OnInteract();
+    }
+
     public string TwitchHelpMessage = "Submit the correct answer using !{0} submit ##.";
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
 }

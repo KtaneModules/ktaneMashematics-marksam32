@@ -13,10 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: mashematics
   title: Mashematics
+  author: Marksam32
   description: "Get your click finger ready because you will need it.\r\n\r\nMod id:
     mashematics\r\nTwitch plays is included!\r\n\r\nThe manual is included. But you
     can find it here:\r\n\r\nHtml: https://ktane.timwi.de/HTML/Mashematics.html\r\nPdf:
     https://ktane.timwi.de/PDF/Mashematics.pdf\r\n\r\nGithub: https://github.com/marksam32/ktaneMashematics"
-  version: 1.6
+  version: 1.0
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 2a2ddfcb6b887cd46a8526d3418885f2, type: 3}

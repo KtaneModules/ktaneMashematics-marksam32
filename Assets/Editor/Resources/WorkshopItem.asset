@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkshopPublishedFileID: 1290077112
   Title: Mashematics
-  Tags: []
+  Tags:
+  - Regular Module
