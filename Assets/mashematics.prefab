@@ -1468,7 +1468,6 @@ MonoBehaviour:
   Module: {fileID: 114640275647680678}
   mathProblemOp1: {fileID: 102296648879896114}
   mathProblemOp2: {fileID: 102387872333195722}
-  TwitchHelpMessage: 'Submit the correct answer using !{0} submit ##.'
 --- !u!114 &114133410746705036
 MonoBehaviour:
   m_ObjectHideFlags: 1

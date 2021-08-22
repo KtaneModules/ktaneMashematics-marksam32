@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class mashematicsScript : MonoBehaviour {
 
@@ -31,7 +33,7 @@ public class mashematicsScript : MonoBehaviour {
 
     private class Number
     {
-        private int moduleId;
+        private readonly int moduleId;
 
         public Number(int moduleId)
         {
@@ -156,7 +158,7 @@ public class mashematicsScript : MonoBehaviour {
         number = new Number(this._moduleId);
         Debug.Log(number.ToString());
 
-        PushBtn.OnInteract += delegate ()
+        PushBtn.OnInteract += delegate
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.PushBtn.transform);
             PushBtn.AddInteractionPunch();
@@ -177,7 +179,7 @@ public class mashematicsScript : MonoBehaviour {
             return false;
         };
 
-        SubmitBtn.OnInteract += delegate ()
+        SubmitBtn.OnInteract += delegate
         {
             Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, this.SubmitBtn.transform);
             SubmitBtn.AddInteractionPunch();
@@ -225,30 +227,45 @@ public class mashematicsScript : MonoBehaviour {
         _moduleId = _moduleIdCounter++;
         Module.OnActivate += Activate;
     }
-
-    Match m;
-    public KMSelectable[] ProcessTwitchCommand(string command)
+    
+    public IEnumerator ProcessTwitchCommand(string command)
     {
         command = command.ToLowerInvariant().Trim();
-
+        Match m;
         if ((m = Regex.Match(command, @"^submit +(\d+)$")).Success)
         {
-            return Enumerable.Repeat(PushBtn, int.Parse(m.Groups[1].Value)).Concat(new[] { SubmitBtn }).ToArray();
+            int value;
+            if(!int.TryParse(m.Groups[1].Value, out value))
+            {
+                yield return "sendtochaterror Stop trying to break the module Kappa";
+                yield break;
+            }
+            yield return null;
+            if (value < numberOfPush)
+            {
+                yield return "sendtochaterror The number you are trying to submit is smaller than the current number.";
+                yield break;
+            }
+            yield return Enumerable.Repeat(PushBtn, value - numberOfPush).Concat(new[] { SubmitBtn });
         }
-
-        return null;
     }
 
     public IEnumerator TwitchHandleForcedSolve()
     {
         var answer = number.GetNumberOfRequiredPush();
-        for (var i = 0; i < answer; i++)
+        if (numberOfPush > answer)
+        {
+            numberOfPush = 0;
+        }
+
+        var noPush = Math.Abs(answer - numberOfPush);
+        for (var i = 0; i < noPush; i++)
         {
             PushBtn.OnInteract();
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.1f);
         }
         SubmitBtn.OnInteract();
     }
 
-    public string TwitchHelpMessage = "Submit the correct answer using !{0} submit ##.";
+    public const string TwitchHelpMessage = "Submit the correct answer using !{0} submit ##.";
 }
